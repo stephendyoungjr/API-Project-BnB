@@ -8,34 +8,29 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    console.log('Creating Users table...');
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Bookings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING(30),
+      spotId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        references: { model: 'Spots' }
       },
-      email: {
-        type: Sequelize.STRING(256),
+      userId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true
+        references: { model: 'Users' }
       },
-      firstName: {
-        type: Sequelize.STRING(50),
+      startDate: {
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
-      lastName: {
-        type: Sequelize.STRING(50),
-        allowNull: false
-      },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
+      endDate: {
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
       createdAt: {
@@ -49,12 +44,10 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     }, options);
-    console.log('Users table created.');
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
-    console.log('Dropping Users table...');
+    options.tableName = "Bookings";
     return queryInterface.dropTable(options);
   }
 };

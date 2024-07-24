@@ -1,3 +1,5 @@
+require('dotenv').config(); // Add this line at the top
+
 const config = require('./index');
 
 module.exports = {
