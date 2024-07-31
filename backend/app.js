@@ -13,6 +13,8 @@ const isProduction = environment === 'production';
 const routes = require('./routes');
 const spotsRouter = require('./routes/api/spots');
 const bookingsRouter = require('./routes/api/bookings');
+const reviewsRouter = require('./routes/api/reviews');
+const imageRoutes = require('./routes/api/image-routes');
 
 const app = express();
 
@@ -44,6 +46,8 @@ app.use(restoreUser);
 
 app.use('/api/spots', spotsRouter);
 app.use('/api/bookings', bookingsRouter);
+app.use('/api/reviews', reviewsRouter);
+app.use('/api', imageRoutes); 
 
 app.use(routes);
 
@@ -52,7 +56,6 @@ app.use((_req, _res, next) => {
   err.title = 'Resource Not Found';
   err.errors = { message: "The requested resource couldn't be found." };
   err.status = 404;
-  console.error(err); // Log the error to the console for debugging
   next(err);
 });
 
@@ -67,13 +70,11 @@ app.use((err, _req, _res, next) => {
     err.title = 'Validation error';
     err.errors = errors;
   }
-  console.error(err); // Log the error to the console for debugging
   next(err);
 });
 
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
-  console.error(err); // Log the error to the console for debugging
   res.json({
     title: err.title || 'Server Error',
     message: err.message,
