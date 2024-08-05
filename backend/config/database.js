@@ -1,4 +1,4 @@
-require('dotenv').config(); // Add this line at the top
+require('dotenv').config(); 
 
 const config = require('./index');
 

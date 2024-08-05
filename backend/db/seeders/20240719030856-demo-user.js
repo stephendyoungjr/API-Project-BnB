@@ -5,13 +5,13 @@ const bcrypt = require("bcryptjs");
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+  options.schema = process.env.SCHEMA;  // define schema in options object
 }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    options.tableName = 'Users';  // define your table name in options object
+    options.tableName = 'Users';  // defines table name in options object
     console.log('Seeding users...');
 
     try {
@@ -46,7 +46,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Users';  // define your table name in options object
+    options.tableName = 'Users';  // defines table name in options object
     const Op = Sequelize.Op;
     console.log('Deleting seeded users...');
 
