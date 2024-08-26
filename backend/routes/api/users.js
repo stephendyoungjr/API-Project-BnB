@@ -1,4 +1,4 @@
-// backend/routes/api/users.js
+
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
@@ -7,7 +7,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const router = express.Router();
 
-// Middleware for validating login data
+
 const validateLogin = [
   check('email')
     .exists({ checkFalsy: true })
@@ -19,7 +19,7 @@ const validateLogin = [
   handleValidationErrors
 ];
 
-// Log in
+
 router.post('/login', validateLogin, async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -63,7 +63,6 @@ router.post('/login', validateLogin, async (req, res, next) => {
 });
 
 
-// Validation middleware for sign-up
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
@@ -90,7 +89,7 @@ const validateSignup = [
   handleValidationErrors
 ];
 
-// Sign up
+
 router.post(
   '/',
   validateSignup,
@@ -125,7 +124,7 @@ router.post(
   }
 );
 
-// Get current user
+
 router.get('/current', requireAuth, async (req, res) => {
   const { id, firstName, lastName, email } = req.user;
 
