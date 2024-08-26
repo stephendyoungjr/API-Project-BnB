@@ -1,8 +1,14 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
-  return <h1>Welcome to WarBnB!</h1>;
+  return (
+    <div>
+      <h1>Welcome to WarBnB!</h1>
+      <Link to="/spots">View Spots</Link>
+    </div>
+  );
 };
 
 export default HomePage;
