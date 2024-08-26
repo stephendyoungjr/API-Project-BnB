@@ -13,25 +13,25 @@ const Navigation = () => {
 
   return (
     <nav>
-      <NavLink exact="true" to="/" activeClassName="active">
+      <NavLink exact="true" to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
         Home
       </NavLink>
-      <NavLink to="/spots" activeClassName="active">
+      <NavLink to="/spots" className={({ isActive }) => (isActive ? 'active' : '')}>
         Spots
       </NavLink>
       {user ? (
         <>
-          <NavLink to="/profile" activeClassName="active">
+          <NavLink to="/profile" className={({ isActive }) => (isActive ? 'active' : '')}>
             Profile
           </NavLink>
           <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
         <>
-          <NavLink to="/login" activeClassName="active">
+          <NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : '')}>
             Login
           </NavLink>
-          <NavLink to="/signup" activeClassName="active">
+          <NavLink to="/signup" className={({ isActive }) => (isActive ? 'active' : '')}>
             Signup
           </NavLink>
         </>

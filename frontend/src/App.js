@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import SpotDetails from './components/SpotDetails';
+import SpotDetailsPage from './components/SpotDetailsPage';
 import UserProfile from './components/UserProfile';
 import Navigation from './components/Navigation';
 import ReviewForm from './components/ReviewForm';
@@ -15,7 +15,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route path="/spots/:spotId" element={<SpotDetails />} />
+        <Route path="/spots/:spotId" element={<SpotDetailsPage />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/spots/:spotId/reviews/new" element={<ReviewForm />} />
         <Route path="/spots/:spotId/bookings/new" element={<BookingForm />} />
