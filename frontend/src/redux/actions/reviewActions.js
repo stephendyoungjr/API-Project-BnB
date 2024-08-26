@@ -1,17 +1,5 @@
+import { createAction } from '@reduxjs/toolkit';
 
-import { LOAD_REVIEWS, ADD_REVIEW, DELETE_REVIEW } from './actionTypes';
-
-export const loadReviews = (reviews) => ({
-  type: LOAD_REVIEWS,
-  payload: reviews,
-});
-
-export const addReview = (review) => ({
-  type: ADD_REVIEW,
-  payload: review,
-});
-
-export const deleteReview = (reviewId) => ({
-  type: DELETE_REVIEW,
-  payload: reviewId,
-});
+export const setReviews = createAction('SET_REVIEWS');
+export const addReview = createAction('ADD_REVIEW');
+export const deleteReview = createAction('DELETE_REVIEW');

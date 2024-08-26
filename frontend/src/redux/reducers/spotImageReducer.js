@@ -1,22 +1,19 @@
+import { createReducer } from '@reduxjs/toolkit';
+import { setSpotImages, addSpotImage, removeSpotImage } from '../actions/spotImageActions';
 
-const initialState = {
-    spotImages: [],
-    loading: false,
-    error: null,
-};
+const initialState = [];
 
-const spotImageReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'UPLOAD_IMAGE_SUCCESS':
-            return { ...state, spotImages: [...state.spotImages, action.payload] };
-        case 'DELETE_IMAGE_SUCCESS':
-            return {
-                ...state,
-                spotImages: state.spotImages.filter(image => image.id !== action.payload),
-            };
-        default:
-            return state;
-    }
-};
+const spotImageReducer = createReducer(initialState, (builder) => {
+    builder
+        .addCase(setSpotImages, (state, action) => {
+            return action.payload;
+        })
+        .addCase(addSpotImage, (state, action) => {
+            state.push(action.payload);
+        })
+        .addCase(removeSpotImage, (state, action) => {
+            return state.filter(image => image.id !== action.payload);
+        });
+});
 
 export default spotImageReducer;

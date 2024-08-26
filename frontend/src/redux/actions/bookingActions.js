@@ -1,17 +1,6 @@
+import { createAction } from '@reduxjs/toolkit';
 
-import { LOAD_BOOKINGS, ADD_BOOKING, DELETE_BOOKING } from './actionTypes';
-
-export const loadBookings = (bookings) => ({
-  type: LOAD_BOOKINGS,
-  payload: bookings,
-});
-
-export const addBooking = (booking) => ({
-  type: ADD_BOOKING,
-  payload: booking,
-});
-
-export const deleteBooking = (bookingId) => ({
-  type: DELETE_BOOKING,
-  payload: bookingId,
-});
+export const setBookings = createAction('SET_BOOKINGS');
+export const addBooking = createAction('ADD_BOOKING');
+export const updateBooking = createAction('UPDATE_BOOKING');
+export const deleteBooking = createAction('DELETE_BOOKING');
