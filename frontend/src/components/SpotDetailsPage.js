@@ -1,23 +1,37 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const SpotDetails = () => {
+const SpotDetailsPage = () => {
   const { spotId } = useParams();
   const [spot, setSpot] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSpot = async () => {
-      const response = await fetch(`/api/spots/${spotId}`);
-      const data = await response.json();
-      setSpot(data);
+      try {
+        const response = await fetch(`/api/spots/${spotId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch spot');
+        }
+        const data = await response.json();
+        setSpot(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
     };
 
     fetchSpot();
   }, [spotId]);
 
-  if (!spot) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
@@ -26,9 +40,8 @@ const SpotDetails = () => {
       <p>{spot.description}</p>
       <p>{spot.price} per night</p>
       <p>{spot.address}, {spot.city}, {spot.state}, {spot.country}</p>
-     
     </div>
   );
 };
 
-export default SpotDetails;
+export default SpotDetailsPage;
