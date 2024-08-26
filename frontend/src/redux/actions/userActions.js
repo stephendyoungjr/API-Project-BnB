@@ -1,18 +1,30 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setUser, removeUser } from './actionTypes';
 
-import { createAction } from '@reduxjs/toolkit';
+export const loginUser = createAsyncThunk('user/loginUser', async (credentials, thunkAPI) => {
+  try {
+    const response = await fetch('/api/session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data.user;
+    } else {
+      const error = await response.json();
+      return thunkAPI.rejectWithValue(error);
+    }
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});
 
-export const setUser = createAction('SET_USER');
-export const removeUser = createAction('REMOVE_USER');
-
-
-export const logout = () => (dispatch) => {
-
-  localStorage.removeItem('userToken'); 
-  sessionStorage.removeItem('userSession'); 
-
-
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
-
-  dispatch(removeUser());
-};
+export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
+  try {
+    await fetch('/api/session', { method: 'DELETE' });
+    return {};
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});

@@ -1,12 +1,23 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const setSpotImages = createAction('SET_SPOT_IMAGES');
+export const uploadSpotImage = createAsyncThunk('spotImages/uploadSpotImage', async ({ spotId, image }, thunkAPI) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', image);
 
+    const response = await fetch(`/api/spots/${spotId}/images`, {
+      method: 'POST',
+      body: formData,
+    });
 
-export const addSpotImage = createAction('ADD_SPOT_IMAGE');
-
-
-export const removeSpotImage = createAction('REMOVE_SPOT_IMAGE');
-
-
-export const clearSpotImages = createAction('CLEAR_SPOT_IMAGES');
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      const error = await response.json();
+      return thunkAPI.rejectWithValue(error);
+    }
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});

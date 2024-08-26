@@ -1,6 +1,35 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const setSpots = createAction('SET_SPOTS');
-export const addSpot = createAction('ADD_SPOT');
-export const updateSpot = createAction('UPDATE_SPOT');
-export const deleteSpot = createAction('DELETE_SPOT');
+export const fetchSpots = createAsyncThunk('spots/fetchSpots', async (_, thunkAPI) => {
+  try {
+    const response = await fetch('/api/spots');
+    if (response.ok) {
+      const data = await response.json();
+      return data.Spots;
+    } else {
+      const error = await response.json();
+      return thunkAPI.rejectWithValue(error);
+    }
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});
+
+export const createSpot = createAsyncThunk('spots/createSpot', async (spot, thunkAPI) => {
+  try {
+    const response = await fetch('/api/spots', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(spot),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      const error = await response.json();
+      return thunkAPI.rejectWithValue(error);
+    }
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});
