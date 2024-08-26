@@ -1,26 +1,23 @@
-
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-
+// src/redux/store.js
+import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/userReducer';
 import spotReducer from './reducers/spotReducer';
-import bookingReducer from './reducers/bookingReducer';
 import reviewReducer from './reducers/reviewReducer';
+import bookingReducer from './reducers/bookingReducer';
 import spotImageReducer from './reducers/spotImageReducer';
 
-const rootReducer = combineReducers({
-    user: userReducer,
-    spots: spotReducer,
-    bookings: bookingReducer,
-    reviews: reviewReducer,
-    spotImages: spotImageReducer,
-});
 
-const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+    reducer: {
+        user: userReducer,
+        spots: spotReducer,
+        reviews: reviewReducer,
+        bookings: bookingReducer,
+        spotImages: spotImageReducer,
+
+ 
+    },
+    devTools: process.env.NODE_ENV !== 'production',  
+});
 
 export default store;
