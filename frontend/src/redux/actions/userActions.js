@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setUser, removeUser } from './actionTypes';
 
 export const loginUser = createAsyncThunk('user/loginUser', async (credentials, thunkAPI) => {
   try {
@@ -23,7 +22,7 @@ export const loginUser = createAsyncThunk('user/loginUser', async (credentials, 
 export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
   try {
     await fetch('/api/session', { method: 'DELETE' });
-    return {};
+    localStorage.removeItem('user'); 
   } catch (err) {
     return thunkAPI.rejectWithValue(err.message);
   }

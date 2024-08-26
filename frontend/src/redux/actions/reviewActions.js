@@ -1,4 +1,6 @@
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async (spotId, thunkAPI) => {
   try {
@@ -25,6 +27,23 @@ export const createReview = createAsyncThunk('reviews/createReview', async ({ sp
     if (response.ok) {
       const data = await response.json();
       return data;
+    } else {
+      const error = await response.json();
+      return thunkAPI.rejectWithValue(error);
+    }
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});
+
+
+export const deleteReview = createAsyncThunk('reviews/deleteReview', async (reviewId, thunkAPI) => {
+  try {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      return reviewId;
     } else {
       const error = await response.json();
       return thunkAPI.rejectWithValue(error);
