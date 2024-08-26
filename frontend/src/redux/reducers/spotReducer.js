@@ -1,21 +1,38 @@
+import { createReducer } from '@reduxjs/toolkit';
+import { fetchSpots, createSpot } from '../actions/spotActions';
 
-import { LOAD_SPOTS, ADD_SPOT, UPDATE_SPOT, DELETE_SPOT } from '../actions/actionTypes';
-
-const initialState = [];
-
-const spotReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case LOAD_SPOTS:
-      return action.payload;
-    case ADD_SPOT:
-      return [...state, action.payload];
-    case UPDATE_SPOT:
-      return state.map(spot => spot.id === action.payload.id ? action.payload : spot);
-    case DELETE_SPOT:
-      return state.filter(spot => spot.id !== action.payload);
-    default:
-      return state;
-  }
+const initialState = {
+  spots: [],
+  loading: false,
+  error: null,
 };
+
+const spotReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(fetchSpots.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(fetchSpots.fulfilled, (state, action) => {
+      state.spots = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchSpots.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    })
+    .addCase(createSpot.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(createSpot.fulfilled, (state, action) => {
+      state.spots.push(action.payload);
+      state.loading = false;
+    })
+    .addCase(createSpot.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    });
+});
 
 export default spotReducer;

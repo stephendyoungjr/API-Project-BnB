@@ -1,19 +1,38 @@
+import { createReducer } from '@reduxjs/toolkit';
+import { fetchReviews, createReview } from '../actions/reviewActions';
 
-import { LOAD_REVIEWS, ADD_REVIEW, DELETE_REVIEW } from '../actions/actionTypes';
-
-const initialState = [];
-
-const reviewReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case LOAD_REVIEWS:
-      return action.payload;
-    case ADD_REVIEW:
-      return [...state, action.payload];
-    case DELETE_REVIEW:
-      return state.filter(review => review.id !== action.payload);
-    default:
-      return state;
-  }
+const initialState = {
+  reviews: [],
+  loading: false,
+  error: null,
 };
+
+const reviewReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(fetchReviews.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(fetchReviews.fulfilled, (state, action) => {
+      state.reviews = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchReviews.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    })
+    .addCase(createReview.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(createReview.fulfilled, (state, action) => {
+      state.reviews.push(action.payload);
+      state.loading = false;
+    })
+    .addCase(createReview.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    });
+});
 
 export default reviewReducer;
