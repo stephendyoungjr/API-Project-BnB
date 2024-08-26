@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
+import SpotsPage from './components/SpotsPage';
+import SpotDetailsPage from './components/SpotDetailsPage';
+import CreateSpotPage from './components/CreateSpotPage';
+import UserBookingsPage from './components/UserBookingsPage';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navigation />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/signup" component={SignupPage} />
+        <Route path="/spots" component={SpotsPage} />
+        <Route path="/spots/new" component={CreateSpotPage} />
+        <Route path="/spots/:spotId" component={SpotDetailsPage} />
+        <Route path="/bookings" component={UserBookingsPage} />
+        {/* Additional roots here */}
+      </Switch>
+    </Router>
   );
 }
 
