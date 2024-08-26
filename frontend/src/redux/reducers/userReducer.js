@@ -1,29 +1,19 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, logout } from '../actions/userActions';
 
-const initialState = {
-  user: null,
-  loading: false,
-  error: null,
-};
-
-const userReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(loginUser.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(loginUser.fulfilled, (state, action) => {
-      state.user = action.payload;
-      state.loading = false;
-    })
-    .addCase(loginUser.rejected, (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
-    })
-    .addCase(logout.fulfilled, (state) => {
-      state.user = null;
-    });
+const userSlice = createSlice({
+  name: 'user',
+  initialState: null,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginUser.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(logout.fulfilled, () => {
+        return null;
+      });
+  },
 });
 
-export default userReducer;
+export default userSlice.reducer;

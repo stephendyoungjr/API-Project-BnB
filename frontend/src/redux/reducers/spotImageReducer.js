@@ -1,26 +1,19 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { uploadSpotImage } from '../actions/spotImageActions';
+import { createSlice } from '@reduxjs/toolkit';
+import { uploadImage, deleteImage } from '../actions/spotImageActions';
 
-const initialState = {
-  spotImages: [],
-  loading: false,
-  error: null,
-};
-
-const spotImageReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(uploadSpotImage.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(uploadSpotImage.fulfilled, (state, action) => {
-      state.spotImages.push(action.payload);
-      state.loading = false;
-    })
-    .addCase(uploadSpotImage.rejected, (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
-    });
+const spotImagesSlice = createSlice({
+  name: 'spotImages',
+  initialState: [],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(uploadImage.fulfilled, (state, action) => {
+        state.push(action.payload);
+      })
+      .addCase(deleteImage.fulfilled, (state, action) => {
+        return state.filter(image => image.id !== action.payload);
+      });
+  },
 });
 
-export default spotImageReducer;
+export default spotImagesSlice.reducer;
