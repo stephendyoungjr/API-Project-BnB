@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
+const path = require('path'); // Add this line
 const { environment } = require('./config');
 const { restoreUser } = require('./utils/auth');
 
@@ -45,12 +46,20 @@ app.use(
 
 app.use(restoreUser);
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'build'))); // Add this line
+
 app.use('/api/spots', spotsRouter);
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/reviews', reviewsRouter);
-app.use('/api', imageRoutes); 
+app.use('/api', imageRoutes);
 
 app.use(routes);
+
+// Serve the React app for any route that doesn’t match the API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html')); // Add this line
+});
 
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
