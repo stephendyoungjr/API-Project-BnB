@@ -4,7 +4,7 @@
   "description": "## Database Schema Design",
   "main": "index.js",
   "scripts": {
-    "install": "npm install --prefix backend",
+    "install": "npm install --prefix backend && npm install --prefix frontend",
     "dev:backend": "NODE_ENV=development node ./backend/bin/www",
     "start": "NODE_ENV=production node ./backend/bin/www",
     "build": "npm run --prefix frontend build",
