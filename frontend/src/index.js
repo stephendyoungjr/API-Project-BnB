@@ -1,22 +1,16 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { restoreCSRF } from './utils/api';
 
-const initialState = {
-  spotImages: [],
-  loading: false,
-  error: null,
-};
+restoreCSRF();
 
-const spotImageReducer = (state = initialState, action) => {
-  switch (action.type) {
-      case 'UPLOAD_IMAGE_SUCCESS':
-          return { ...state, spotImages: [...state.spotImages, action.payload] };
-      case 'DELETE_IMAGE_SUCCESS':
-          return {
-              ...state,
-              spotImages: state.spotImages.filter(image => image.id !== action.payload),
-          };
-      default:
-          return state;
-  }
-};
-
-export default spotImageReducer;
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
