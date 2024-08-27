@@ -1,5 +1,4 @@
-require('dotenv').config(); 
-
+// backend/config/database.js
 const config = require('./index');
 
 module.exports = {
@@ -21,7 +20,7 @@ module.exports = {
       }
     },
     define: {
-      schema: process.env.SCHEMA || 'public'
+      schema: process.env.SCHEMA
     }
   }
 };
