@@ -14,7 +14,7 @@ const setTokenCookie = (res, user) => {
   const token = jwt.sign(
     { data: safeUser },
     secret,
-    { expiresIn: Number(expiresIn) } 
+
   );
 
   const isProduction = process.env.NODE_ENV === "production";
