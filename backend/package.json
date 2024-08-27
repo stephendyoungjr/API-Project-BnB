@@ -6,7 +6,9 @@
   "scripts": {
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
-    "start": "node ./bin/www",
+    "start": "per-env",
+    "start:development": "nodemon ./bin/www",
+    "start:production": "node ./bin/www",
     "build": "node psql-setup-script.js"
   },
   "keywords": [],
@@ -24,13 +26,14 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "per-env": "^1.0.2",
     "pg": "^8.12.0",
     "sequelize": "^6.37.3",
     "sequelize-cli": "^6.6.2"
   },
   "devDependencies": {
     "dotenv-cli": "^7.4.2",
-    "nodemon": "^3.1.4",
+    "nodemon": "^3.1.3",
     "sqlite3": "^5.1.7"
   }
 }
