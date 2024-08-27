@@ -1,4 +1,4 @@
-import { useModal } from "../../context/Modalodal";
+import { useModal } from "../../context/Modal";
 
 const OpenModalMenuItem = ({modalComponent, itemText, onItemClick, onModalClose, className}) => {
     const { setModalContent, setOnModalClose } = useModal();
