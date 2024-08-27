@@ -1,16 +1,21 @@
-
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { API_URL } from '../api'; 
+import { API_URL } from '../api';
 
 const SpotList = () => {
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
     const fetchSpots = async () => {
-      const response = await fetch(`${API_URL}/spots`);
-      const data = await response.json();
-      setSpots(data.Spots);
+      try {
+        const response = await fetch(`${API_URL}/spots`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch spots');
+        }
+        const data = await response.json();
+        setSpots(data.Spots);
+      } catch (error) {
+        console.error('Error fetching spots:', error.message);
+      }
     };
 
     fetchSpots();
@@ -20,9 +25,9 @@ const SpotList = () => {
     <div>
       <h1>All Spots</h1>
       <ul>
-        {spots.map(spot => (
+        {spots.map((spot) => (
           <li key={spot.id}>
-            <Link to={`/spots/${spot.id}`}>{spot.name}</Link>
+            <a href={`/spots/${spot.id}`}>{spot.name}</a>
           </li>
         ))}
       </ul>
