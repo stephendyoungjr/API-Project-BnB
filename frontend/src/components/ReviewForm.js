@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_URL } from '../api'; // Importing API_URL
 
 const ReviewForm = () => {
   const { spotId } = useParams();
@@ -12,7 +12,7 @@ const ReviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/spots/${spotId}/reviews`, {
+      const response = await fetch(`${API_URL}/spots/${spotId}/reviews`, { // Updated to use API_URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ review, stars }),

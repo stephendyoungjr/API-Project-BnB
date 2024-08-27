@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_URL } from '../api';
 
 const EditReviewForm = () => {
   const { reviewId } = useParams();
@@ -15,7 +15,7 @@ const EditReviewForm = () => {
   useEffect(() => {
     const fetchReview = async () => {
       try {
-        const response = await fetch(`/api/reviews/${reviewId}`);
+        const response = await fetch(`${API_URL}/reviews/${reviewId}`);
         if (!response.ok) throw new Error('Failed to fetch review');
         const data = await response.json();
         setReview(data.review);
@@ -33,7 +33,7 @@ const EditReviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/reviews/${reviewId}`, {
+      const response = await fetch(`${API_URL}/reviews/${reviewId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ review, stars }),

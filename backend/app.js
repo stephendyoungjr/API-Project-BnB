@@ -21,7 +21,10 @@ app.use(cookieParser());
 app.use(express.json());
 
 if (!isProduction) {
-  app.use(cors());
+  app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }));
 }
 
 app.use(
@@ -40,21 +43,16 @@ app.use(
   })
 );
 
-// Middleware to restore user
 app.use(restoreUser);
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 
-// Mount API routes
 app.use(routes);
 
-// Serve the React app for any route that doesn’t match the API routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
 });
 
-// Handle 404 errors
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = 'Resource Not Found';
@@ -63,7 +61,6 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-// Handle Sequelize validation errors
 const { ValidationError } = require('sequelize');
 
 app.use((err, _req, _res, next) => {
@@ -78,7 +75,6 @@ app.use((err, _req, _res, next) => {
   next(err);
 });
 
-// Generic error handler
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   res.json({

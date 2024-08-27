@@ -1,13 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../api'; 
 
 const SpotList = () => {
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
     const fetchSpots = async () => {
-      const response = await fetch('/api/spots');
+      const response = await fetch(`${API_URL}/spots`);
       const data = await response.json();
       setSpots(data.Spots);
     };

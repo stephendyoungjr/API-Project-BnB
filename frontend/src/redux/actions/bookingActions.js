@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import { API_URL } from '../../api'; 
 export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async (spotId, thunkAPI) => {
   try {
-    const response = await fetch(`/api/spots/${spotId}/bookings`);
+    const response = await fetch(`${API_URL}/spots/${spotId}/bookings`); 
     if (response.ok) {
       const data = await response.json();
       return data.Bookings;
@@ -17,7 +17,7 @@ export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async (s
 
 export const createBooking = createAsyncThunk('bookings/createBooking', async ({ spotId, booking }, thunkAPI) => {
   try {
-    const response = await fetch(`/api/spots/${spotId}/bookings`, {
+    const response = await fetch(`${API_URL}/spots/${spotId}/bookings`, { 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),

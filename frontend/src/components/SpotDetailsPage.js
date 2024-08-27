@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_URL } from '../api';
 
 const SpotDetailsPage = () => {
   const { spotId } = useParams();
@@ -10,7 +11,7 @@ const SpotDetailsPage = () => {
   useEffect(() => {
     const fetchSpot = async () => {
       try {
-        const response = await fetch(`/api/spots/${spotId}`);
+        const response = await fetch(`${API_URL}/spots/${spotId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch spot');
         }

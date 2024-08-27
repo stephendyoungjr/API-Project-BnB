@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_URL } from '../api';
 
 const SpotForm = () => {
   const [name, setName] = useState('');
@@ -19,7 +20,7 @@ const SpotForm = () => {
     const spot = { name, description, price, address, city, state, country };
 
     try {
-      const response = await fetch('/api/spots', {
+      const response = await fetch(`${API_URL}/spots`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot),

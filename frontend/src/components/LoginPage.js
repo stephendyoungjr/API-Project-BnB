@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/actions/userActions';
+import { login } from '../redux/sessionSlice';
 
 const LoginPage = () => {
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ credential, password }));
+    try {
+      await dispatch(login({ credential, password }));
+
+    } catch (err) {
+
+      console.error("Login failed:", err);
+    }
   };
 
   return (

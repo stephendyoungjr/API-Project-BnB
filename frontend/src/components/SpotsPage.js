@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SpotList from './SpotList';
+import { API_URL } from '../api';
 
 const SpotsPage = () => {
   const [spots, setSpots] = useState([]);
@@ -9,7 +10,7 @@ const SpotsPage = () => {
   useEffect(() => {
     const fetchSpots = async () => {
       try {
-        const response = await fetch('/api/spots');
+        const response = await fetch(`${API_URL}/spots`);
         if (!response.ok) {
           throw new Error('Failed to fetch spots');
         }
