@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
 const { User } = require('../db/models');
 
-const { secret, expiresIn } = jwtConfig;
+const { secret } = jwtConfig;
 
 const setTokenCookie = (res, user) => {
   const safeUser = {
@@ -13,14 +13,16 @@ const setTokenCookie = (res, user) => {
 
   const token = jwt.sign(
     { data: safeUser },
-    secret,
-
+    secret
   );
 
   const isProduction = process.env.NODE_ENV === "production";
 
+ 
+  const maxAge = 7 * 24 * 60 * 60 * 1000;
+
   res.cookie('token', token, {
-    maxAge: Number(expiresIn) * 1000, 
+    maxAge: maxAge, 
     httpOnly: true,
     secure: isProduction,
     sameSite: isProduction && "Lax"
