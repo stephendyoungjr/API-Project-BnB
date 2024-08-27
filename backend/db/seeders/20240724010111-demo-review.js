@@ -4,13 +4,13 @@ const { Review } = require('../models');
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // defines schema in options object
+  options.schema = process.env.SCHEMA; 
 }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    options.tableName = 'Reviews';  // defines table name in options object
+    options.tableName = 'Reviews';  
     console.log('Seeding reviews...');
 
     try {
@@ -36,8 +36,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Reviews';  // defines table name in options object
-    const Op = Sequelize.Op;
+    options.tableName = 'Reviews';  
     console.log('Deleting seeded reviews...');
 
     try {
