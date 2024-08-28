@@ -1,64 +1,35 @@
+// frontend/src/main.jsx
 
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import LandingPage from "./components/LandingPage";
-import * as sessionActions from './store/session'
-import SpotDetailsPage from "./components/SpotDetailsPage";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+import { Provider } from 'react-redux';
+import configureStore from './store/store';
+import { restoreCSRF, csrfFetch } from './store/csrf';
+import * as sessionActions from './store/session';
+import { ModalProvider } from './context/Modal';
 
-import ManageSpotsPage from "./components/ManageSpotsPage";
-import CreateSpotPage from "./components/SpotFormPage/CreateSpotPage";
-import EditSpotPage from "./components/SpotFormPage/EditSpotPage";
+const store = configureStore();
 
+if (import.meta.env.MODE !== 'production') {
+    restoreCSRF();
 
-const Layout = () => {
-  const dispatch = useDispatch()
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)})
-  }, [dispatch])
-
-  return (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Outlet /> }
-    </>
-  );
+    window.csrfFetch = csrfFetch;
+    window.store = store;
+    window.sessionActions = sessionActions;
 }
 
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-        element: <LandingPage />,
-      },
-      {
-        path: 'spots/:spotId/edit',
-        element: <EditSpotPage />
-      },
-      {
-        path: 'spots/:spotId',
-        element: <SpotDetailsPage />,
-      },
-      {
-        path: 'spots/new',
-        element: <CreateSpotPage/>
-      },
-      {
-        path: 'spots/current',
-        element: <ManageSpotsPage />
-      }
-    ]
-  }
-]);
-
-function App() {
-  return <RouterProvider router={router}/>;
+if (process.env.NODE_ENV !== 'production') {
+    window.store = store;
 }
 
-export default App;
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <ModalProvider>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </ModalProvider>
+    </React.StrictMode>
+);
