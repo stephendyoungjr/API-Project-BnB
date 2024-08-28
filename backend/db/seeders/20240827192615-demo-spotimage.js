@@ -89,16 +89,26 @@ const demoSpotImages = [
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await SpotImage.bulkCreate(demoSpotImages, {
-      validate: true
-    });
+    try {
+      await SpotImage.bulkCreate(demoSpotImages, {
+        validate: true
+      });
+      console.log('Seeding SpotImages completed successfully.');
+    } catch (error) {
+      console.error('Seeding SpotImages failed:', error);
+    }
   },
 
   async down(queryInterface, Sequelize) {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
-    return await queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8] }
-    }, {});
+    try {
+      await queryInterface.bulkDelete(options, {
+        spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8] }
+      }, {});
+      console.log('Rollback of SpotImages seeder completed successfully.');
+    } catch (error) {
+      console.error('Rollback of SpotImages seeder failed:', error);
+    }
   }
 };

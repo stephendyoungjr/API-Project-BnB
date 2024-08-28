@@ -27,10 +27,10 @@ module.exports = (sequelize, DataTypes) => {
   },
     url: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
+      // allowNull: false,
+      // validate: {
+      //   isUrl: true
+      // }
   },
     preview: {
       type: DataTypes.BOOLEAN,
