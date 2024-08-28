@@ -1,9 +1,21 @@
+const { validationResult, check } = require("express-validator");
+const { Model } = require("sequelize");
 
-const path = require('path');
+const handleValidationErrors = (req, _res, next) => {
+  const validationErrors = validationResult(req);
 
-module.exports = {
-  config: path.resolve('config', 'database.js'),
-  'models-path': path.resolve('db', 'models'),
-  'seeders-path': path.resolve('db', 'seeders'),
-  'migrations-path': path.resolve('db', 'migrations')
+  if (!validationErrors.isEmpty()) {
+    const errors = {};
+    validationErrors
+      .array()
+      .forEach((error) => (errors[error.path] = error.msg));
+
+    const err = Error("Bad request");
+    err.errors = errors;
+    err.status = 400;
+    err.title = "Bad request";
+    next(err);
+  }
+  next();
 };
+module.exports = { handleValidationErrors};
