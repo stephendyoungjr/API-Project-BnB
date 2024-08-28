@@ -84,7 +84,13 @@ const demoUsers = [
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    try{
     await User.bulkCreate(demoUsers, { validate: true });
+    console.log('Seeding complete');
+    }
+    catch (error){
+      console.error('seeding failed: ', error);
+    }
   },
 
   async down (queryInterface, Sequelize) {
