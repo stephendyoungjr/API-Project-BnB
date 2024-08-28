@@ -1,25 +1,42 @@
 'use strict';
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ReviewImages', {
+    await queryInterface.createTable('Reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      reviewId: {
+      spotId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'Reviews', // Name of the table you're linking to
-          key: 'id' // Primary key in the Reviews table
+          model: 'Spots'
         },
-        onDelete: 'CASCADE', // Ensure that if a review is deleted, its images are also deleted
-        allowNull: false
+        onDelete: 'CASCADE'
       },
-      url: {
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users'
+        },
+        onDelete: 'CASCADE'
+      },
+      review: {
         type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      stars: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {
@@ -32,10 +49,17 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
+
+    options.tableName = 'Reviews';
+    await queryInterface.addIndex(options, ['spotId', 'userId'], {
+      unique: true,
+      name: 'idx_reviews_spotId_userId'
+    })
   },
   async down(queryInterface, Sequelize) {
-    // Make sure to drop the foreign key constraint first if it exists
-    await queryInterface.dropTable('ReviewImages');
+    options.tableName = 'Reviews';
+    await queryInterface.removeIndex(options, 'idx_reviews_spotId_userId');
+    return await queryInterface.dropTable(options);
   }
 };
