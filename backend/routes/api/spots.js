@@ -4,7 +4,7 @@ const { Sequelize, Op } = require('sequelize');
 
 const {requireAuth, authorization} = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require('../../db/models')
-const { makeSpotObj, makeReviewObj, makeBookingObj, formatDate } = require('../../utils/helpers')
+const { makeSpotObj, makeReviewObj, makeBookingObj, formatDate } = require('../../utils/helper')
 
 const { check, body } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
