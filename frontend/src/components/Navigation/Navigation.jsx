@@ -19,7 +19,7 @@ const Navigation = ({isLoaded}) => {
             <li id="home-nav">
                 <NavLink to="/">
                     <div id="site-icon"><GiPalmTree /></div>
-                    Vacay Stays
+                    Warbnb
                 </NavLink>
             </li>
             {isLoaded && (
