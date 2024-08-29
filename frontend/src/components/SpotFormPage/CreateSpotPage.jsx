@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addSpotImage, createSpot } from "../../store/spot";
 import { useNavigate } from "react-router-dom";
 import './SpotForm.css'
+import React from 'react';
 
 
 const CreateSpotPage = () => {

@@ -6,6 +6,7 @@ import { IoMdStar } from "react-icons/io";
 import { LuDot } from "react-icons/lu";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../ReviewFormModal";
+import React from 'react';
 
 import './SpotDetails.css'
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";

@@ -5,7 +5,7 @@ import { TiStarFullOutline } from "react-icons/ti";
 import './ReviewForm.css'
 import { useDispatch } from 'react-redux';
 import { createReview } from '../../store/spot.js';
-
+import React from 'react';
 
 const ReviewFormModal= ({spotId}) => {
     const dispatch = useDispatch()

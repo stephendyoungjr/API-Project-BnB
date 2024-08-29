@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { FaCircleUser } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
+import React from 'react';
+
 
 // Local Imports
 import { logout } from "../../store/session";
