@@ -1,4 +1,5 @@
 import { useModal } from '../../context/Modal'
+import React from "react";
 
 const OpenModalButton = ({modalComponent, buttonText, onButtonClick, onModalClose}) => {
     const { setModalContent, setOnModalClose } = useModal();
