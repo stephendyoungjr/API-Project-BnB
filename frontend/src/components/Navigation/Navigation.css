@@ -54,6 +54,7 @@ li {
 #home-nav *{
     /* border: solid 1px red; */
     color: #234a63;
+    align-items: center;
     display: flex;
     /* gap: 1em; */
     font-size: 1.5em;
@@ -63,7 +64,7 @@ li {
 }
 
 #site-icon *{
-    height: 100%;
+    height: auto;
     font-size: 2.125em;
 }
 
@@ -109,3 +110,14 @@ li {
     width: 50px; 
     height: auto;
 }
+
+#home-nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  #home-nav .site-icon {
+    margin-right: 10px; /* Add space between logo and text if needed */
+  }
