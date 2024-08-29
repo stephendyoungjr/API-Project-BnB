@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 const demoSpotImages = [
   {
     spotId: 1,
-    url: "backend/spotphotos/warbnb1.jpeg",
+    url: "../spotphotos/warbnb1.jpeg",
     preview: true
   },
   {

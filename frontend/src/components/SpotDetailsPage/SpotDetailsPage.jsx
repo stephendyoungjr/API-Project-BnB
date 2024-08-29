@@ -40,7 +40,7 @@ const SpotDetailsPage = () => {
     const handleClick = (e) => {
         e.preventDefault();
 
-        alert('Feature Coming Soon')
+        alert('Adding Reservations soon!')
     }
 
     const numReviewsText = (numReviews) => {
