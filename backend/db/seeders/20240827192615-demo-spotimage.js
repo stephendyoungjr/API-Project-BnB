@@ -10,78 +10,78 @@ if (process.env.NODE_ENV === 'production') {
 const demoSpotImages = [
   {
     spotId: 1,
-    url: "../spotphotos/warbnb1.jpeg",
+    url: "/warbnb1.jpeg",
     preview: true
   },
   {
     spotId: 1,
-    url: "backend/spotphotos/warbnb2.jpeg"
+    url: "/warbnb2.jpeg"
   },
   {
     spotId: 7,
-    url: "backend/spotphotos/warbnb3.jpeg",
+    url: "/warbnb3.jpeg",
     preview: true
   },
   {
     spotId: 7,
-    url: "backend/spotphotos/warbnb4.jpeg"
+    url: "/warbnb4.jpeg"
   },
   {
     spotId: 7,
-    url: "backend/spotphotos/warbnb5.jpeg"
+    url: "/warbnb5.jpeg"
   },
   {
     spotId: 6,
-    url: "backend/spotphotos/warbnb6.jpeg",
+    url: "/warbnb6.jpeg",
     preview: true
   },
   {
     spotId: 6,
-    url: "backend/spotphotos/warbnb7.jpeg"
+    url: "/warbnb7.jpeg"
   },
   {
     spotId: 8,
-    url: "backend/spotphotos/warbnb8.jpeg",
+    url: "/warbnb8.jpeg",
     preview: true
   },
   {
     spotId: 8,
-    url: "backend/spotphotos/warbnb9.jpeg"
+    url: "/warbnb9.jpeg"
   },
   {
     spotId: 8,
-    url: "backend/spotphotos/warbnb10.jpeg"
+    url: "/warbnb10.jpeg"
   },
   {
     spotId: 2,
-    url: "backend/spotphotos/warbnb11.jpeg",
+    url: "/warbnb11.jpeg",
     preview: true
   },
   {
     spotId: 2,
-    url: "backend/spotphotos/warbnb12.jpeg"
+    url: "/warbnb12.jpeg"
   },
   {
     spotId: 3,
-    url: "backend/spotphotos/warbnb13.jpeg",
+    url: "/warbnb13.jpeg",
     preview: true
   },
   {
     spotId: 3,
-    url: "backend/spotphotos/warbnb14.jpeg"
+    url: "/warbnb14.jpeg"
   },
   {
     spotId: 4,
-    url: "backend/spotphotos/warbnb15.jpeg",
+    url: "/warbnb15.jpeg",
     preview: true
   },
   {
     spotId: 4,
-    url: "backend/spotphotos/warbnb16.jpeg"
+    url: "/warbnb16.jpeg"
   },
   {
     spotId: 5,
-    url: "backend/spotphotos/warbnb17.jpeg",
+    url: "/warbnb17.jpeg",
     preview: true
   }
 ];
