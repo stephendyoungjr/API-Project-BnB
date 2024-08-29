@@ -13,6 +13,7 @@ ul {
     align-items: center;
     padding: 1em;
     margin: 0;
+    background-color: rgba(178,198,199,255);
 }
 
 li {
@@ -52,10 +53,10 @@ li {
 
 #home-nav *{
     /* border: solid 1px red; */
-    color: #f44336;
+    color: #234a63;
     display: flex;
     /* gap: 1em; */
-    font-size: 1em;
+    font-size: 1.5em;
     font-family: "Playwrite CU", cursive;
     font-weight: 1000;
     text-decoration: none;
@@ -108,4 +109,9 @@ li {
  box-shadow: none;
  background-color: rgb(129, 128, 128);
  color: white;
+}
+
+#site-icon #logo-image {
+    width: 50px; /* Adjust this value as needed */
+    height: auto;
 }
