@@ -6,7 +6,7 @@ import './Navigation.css';
 
 const Navigation = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
 
     const handleClick = (e) => {
         e.preventDefault();
