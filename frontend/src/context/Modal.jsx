@@ -38,7 +38,7 @@ export const ModalProvider = ({children}) => {
 
 export const Modal = () => {
     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
-
+    console.log('Modal content:', modalContent);
     if (!modalRef || !modalRef.current || !modalContent) return null;
 
     return ReactDOM.createPortal(

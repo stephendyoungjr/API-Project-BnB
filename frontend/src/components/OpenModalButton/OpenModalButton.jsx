@@ -5,14 +5,25 @@ const OpenModalButton = ({modalComponent, buttonText, onButtonClick, onModalClos
     console.log('OpenModalButton rendered'); 
     const { setModalContent, setOnModalClose } = useModal();
 
-    const onClick = (e) => {
-        e.preventDefault()
-        console.log('Button clicked');
-        if (onModalClose) setOnModalClose(onModalClose);
+    // const onClick = (e) => {
+    //     e.preventDefault()
+    //     console.log('Button clicked');
+    //     if (onModalClose) setOnModalClose(onModalClose);
+    //     setModalContent(modalComponent);
+    //     if (typeof onButtonClick === 'function') onButtonClick();
+    //     console.log('Modal content set:', modalComponent);
+    // }
+    const onClick = () => {
+        if (onModalClose) {
+            console.log('Setting onModalClose');
+            setOnModalClose(onModalClose);
+        }
+        console.log('Setting modal content:', modalComponent);
         setModalContent(modalComponent);
-        if (typeof onButtonClick === 'function') onButtonClick();
-        console.log('Modal content set:', modalComponent);
+        if (typeof onItemClick === 'function') onItemClick();
     }
+
+    
     return (
         <button onClick={e=> {onClick(e)}}>{buttonText}</button>
     )

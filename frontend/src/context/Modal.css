@@ -1,4 +1,4 @@
-#modal {
+/* #modal {
     position: fixed;
     top: 100px;
     right: 0;
@@ -6,7 +6,19 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-  }
+  } */
+
+  #modal {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000; /* Add a high z-index */
+}
+
 
   #modal-background {
     position: fixed;
