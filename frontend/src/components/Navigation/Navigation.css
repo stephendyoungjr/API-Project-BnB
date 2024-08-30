@@ -53,7 +53,7 @@ li {
 
 #home-nav *{
     /* border: solid 1px red; */
-    color: #234a63;
+    color: #234a63 !important;
     align-items: center;
     display: flex;
     /* gap: 1em; */
