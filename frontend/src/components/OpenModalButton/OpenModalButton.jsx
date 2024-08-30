@@ -5,9 +5,11 @@ const OpenModalButton = ({modalComponent, buttonText, onButtonClick, onModalClos
     const { setModalContent, setOnModalClose } = useModal();
 
     const onClick = () => {
+        console.log('Button clicked');
         if (onModalClose) setOnModalClose(onModalClose);
         setModalContent(modalComponent);
         if (typeof onButtonClick === 'function') onButtonClick();
+        console.log('Modal content set:', modalComponent);
     }
     return (
         <button onClick={onClick}>{buttonText}</button>

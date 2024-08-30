@@ -8,7 +8,7 @@ import React from 'react';
 // Local Imports
 import { logout } from "../../store/session";
 import OpenModalMenuItem from './OpenModalMenuItem'
-import LoginFormModal from '../LoginFormModal';
+import LoginFormModal from '../LoginFormModal'; 
 import SignupFormModal from "../SignupFormModal";
 import { useNavigate } from "react-router-dom";
 
