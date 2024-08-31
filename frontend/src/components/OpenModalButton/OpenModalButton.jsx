@@ -1,3 +1,4 @@
+
 // import { useModal } from '../../context/Modal';
 // import React from "react";
 
@@ -6,7 +7,7 @@
 
 //     const onClick = () => {
 //         if (onModalClose) {
-//             setOnModalClose(!onModalClose)
+//             setOnModalClose(onModalClose)
 //         }
 //         setModalContent(modalComponent);
 //         if (typeof onButtonClick === 'function') {
@@ -29,11 +30,11 @@ const OpenModalButton = ({ modalComponent, buttonText, onButtonClick, onModalClo
 
     const onClick = () => {
         if (onModalClose) {
-            setOnModalClose(onModalClose)
+            setOnModalClose(() => onModalClose); // Correctly setting the modal close function
         }
         setModalContent(modalComponent);
         if (typeof onButtonClick === 'function') {
-            onButtonClick(); // Correctly calling onButtonClick instead of onItemClick
+            onButtonClick(); // Call the onButtonClick if provided
         }
     };
 
@@ -43,4 +44,3 @@ const OpenModalButton = ({ modalComponent, buttonText, onButtonClick, onModalClo
 };
 
 export default OpenModalButton;
-
