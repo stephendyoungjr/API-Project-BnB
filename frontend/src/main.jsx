@@ -21,7 +21,7 @@ if (import.meta.env.MODE !== 'production') {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <ModalProvider>  // This ensures the ModalProvider wraps your app
+        <ModalProvider>  
             <Provider store={store}>
                 <App />
             </Provider>
