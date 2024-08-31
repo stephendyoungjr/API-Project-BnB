@@ -5,10 +5,18 @@ const OpenModalMenuItem = ({ modalComponent, itemText, onItemClick, onModalClose
     const { setModalContent, setOnModalClose } = useModal();
 
     const onClick = () => {
-        console.log("Opening Modal:", modalComponent);
-        if (onModalClose) setOnModalClose(onModalClose);
+        console.log("Opening Modal with component:", modalComponent);
+        if (onModalClose) {
+            setOnModalClose(onModalClose);
+            console.log("Setting onModalClose callback");
+        }
         setModalContent(modalComponent);
-        if (typeof onItemClick === 'function') onItemClick();
+        console.log("Modal content set:", modalComponent);
+
+        if (typeof onItemClick === 'function') {
+            onItemClick();
+            console.log("Item click handler executed");
+        }
     };
 
     return (
@@ -17,7 +25,6 @@ const OpenModalMenuItem = ({ modalComponent, itemText, onItemClick, onModalClose
 };
 
 export default OpenModalMenuItem;
-
 
 
 
@@ -32,7 +39,7 @@ export default OpenModalMenuItem;
 //         if (onModalClose) setOnModalClose(onModalClose);
 //         setModalContent(modalComponent);
 //         if (typeof onItemClick === 'function') onItemClick();
-//     }
+//     };
 
 //     return (
 //         <li className={className} onClick={onClick}>{itemText}</li>

@@ -18,6 +18,7 @@ const ProfileButton = ({ user }) => {
     const toggleMenu = (e) => {
         e.stopPropagation();
         setShowMenu(!showMenu); // Toggle the menu visibility
+        console.log("Menu toggled, showMenu:", !showMenu);
     };
 
     useEffect(() => {
@@ -27,6 +28,7 @@ const ProfileButton = ({ user }) => {
         const closeMenu = (e) => {
             if (ulRef.current && !ulRef.current.contains(e.target)) {
                 setShowMenu(false); // Close the menu
+                console.log("Menu closed because of outside click");
             }
         };
 
@@ -36,13 +38,17 @@ const ProfileButton = ({ user }) => {
         return () => document.removeEventListener('click', closeMenu);
     }, [showMenu]);
 
-    const closeMenuManually = () => setShowMenu(false); // This can be passed as a prop to close the menu manually
+    const closeMenuManually = () => {
+        setShowMenu(false);
+        console.log("Menu closed manually");
+    }; 
 
     const logoutClick = (e) => {
         e.preventDefault();
         dispatch(logout());
         closeMenuManually();
         navigate('/');
+        console.log("User logged out");
     };
 
     const dropdownClasses = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -176,5 +182,7 @@ export default ProfileButton;
 // };
 
 // export default ProfileButton;
+
+
 
 

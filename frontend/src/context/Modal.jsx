@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useRef, createContext, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
@@ -26,12 +27,14 @@ export const ModalProvider = ({ children }) => {
         closeModal
     };
 
+    console.log('Rendering ModalProvider:', modalRef.current); // Log to see if modalRef is set correctly
+
     return (
         <>
             <ModalContext.Provider value={contextValue}>
                 {children}
             </ModalContext.Provider>
-            <div id="modal-root" ref={modalRef} /> {/* Make sure this div is correctly rendered */}
+            <div id="modal-root" ref={modalRef} />
         </>
     );
 };
@@ -39,7 +42,7 @@ export const ModalProvider = ({ children }) => {
 export const Modal = () => {
     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
     console.log('Modal content:', modalContent);
-    console.log('Modal ref:', modalRef.current); // This should log a DOM element, not null
+    console.log('Modal ref (inside Modal):', modalRef.current); // Log to check if modalRef is set inside Modal
 
     // If the ref is null or there's no content, return null
     if (!modalRef.current || !modalContent) return null;
@@ -54,6 +57,7 @@ export const Modal = () => {
 };
 
 export const useModal = () => useContext(ModalContext);
+
 
 // import React from 'react';
 // import { useRef, createContext, useState, useContext } from 'react';
