@@ -6,7 +6,6 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import * as sessionActions from './store/session'
 import SpotDetailsPage from "./components/SpotDetailsPage";
-
 import ManageSpotsPage from "./components/ManageSpotsPage";
 import CreateSpotPage from "./components/SpotFormPage/CreateSpotPage";
 import EditSpotPage from "./components/SpotFormPage/EditSpotPage";
@@ -65,6 +64,8 @@ function App() {
 export default App;
 
 
+
+
 // import React from "react";
 // import { useState, useEffect } from "react";
 // import { useDispatch } from "react-redux";
@@ -73,6 +74,7 @@ export default App;
 // import LandingPage from "./components/LandingPage";
 // import * as sessionActions from './store/session'
 // import SpotDetailsPage from "./components/SpotDetailsPage";
+
 // import ManageSpotsPage from "./components/ManageSpotsPage";
 // import CreateSpotPage from "./components/SpotFormPage/CreateSpotPage";
 // import EditSpotPage from "./components/SpotFormPage/EditSpotPage";
@@ -93,7 +95,7 @@ export default App;
 //       {isLoaded && <Outlet />}
 //     </>
 //   );
-// };
+// }
 
 // const router = createBrowserRouter([
 //   {
@@ -124,10 +126,10 @@ export default App;
 // ]);
 
 // function App() {
+//   console.log("Rendering App with router"); // Log to ensure ModalProvider is wrapping the app
 //   return <RouterProvider router={router} />;
 // }
 
 // export default App;
-
 
 

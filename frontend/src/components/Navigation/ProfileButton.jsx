@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { FaCircleUser } from "react-icons/fa6";
@@ -24,7 +25,6 @@ const ProfileButton = ({ user }) => {
     useEffect(() => {
         if (!showMenu) return; // If the menu is not shown, do nothing
 
-        // Function to close the menu if a click is detected outside of it
         const closeMenu = (e) => {
             if (ulRef.current && !ulRef.current.contains(e.target)) {
                 setShowMenu(false); // Close the menu
@@ -34,7 +34,6 @@ const ProfileButton = ({ user }) => {
 
         document.addEventListener('click', closeMenu);
 
-        // Cleanup the event listener when the component is unmounted or the menu is closed
         return () => document.removeEventListener('click', closeMenu);
     }, [showMenu]);
 
@@ -93,8 +92,6 @@ const ProfileButton = ({ user }) => {
 export default ProfileButton;
 
 
-
-
 // import { useEffect, useState, useRef } from "react";
 // import { useDispatch } from "react-redux";
 // import { FaCircleUser } from "react-icons/fa6";
@@ -115,6 +112,7 @@ export default ProfileButton;
 //     const toggleMenu = (e) => {
 //         e.stopPropagation();
 //         setShowMenu(!showMenu); // Toggle the menu visibility
+//         console.log("Menu toggled, showMenu:", !showMenu);
 //     };
 
 //     useEffect(() => {
@@ -124,6 +122,7 @@ export default ProfileButton;
 //         const closeMenu = (e) => {
 //             if (ulRef.current && !ulRef.current.contains(e.target)) {
 //                 setShowMenu(false); // Close the menu
+//                 console.log("Menu closed because of outside click");
 //             }
 //         };
 
@@ -133,13 +132,17 @@ export default ProfileButton;
 //         return () => document.removeEventListener('click', closeMenu);
 //     }, [showMenu]);
 
-//     const closeMenuManually = () => setShowMenu(false); // This can be passed as a prop to close the menu manually
+//     const closeMenuManually = () => {
+//         setShowMenu(false);
+//         console.log("Menu closed manually");
+//     }; 
 
 //     const logoutClick = (e) => {
 //         e.preventDefault();
 //         dispatch(logout());
 //         closeMenuManually();
 //         navigate('/');
+//         console.log("User logged out");
 //     };
 
 //     const dropdownClasses = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -182,7 +185,4 @@ export default ProfileButton;
 // };
 
 // export default ProfileButton;
-
-
-
 
