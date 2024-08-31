@@ -1,3 +1,4 @@
+
 import { useModal } from "../../context/Modal";
 import React from "react";
 
@@ -5,18 +6,11 @@ const OpenModalMenuItem = ({ modalComponent, itemText, onItemClick, onModalClose
     const { setModalContent, setOnModalClose } = useModal();
 
     const onClick = () => {
-        console.log("Opening Modal with component:", modalComponent);
-        if (onModalClose) {
-            setOnModalClose(onModalClose);
-            console.log("Setting onModalClose callback");
-        }
+        console.log("Opening Modal with component:", modalComponent); // Log which component is being set
+        if (onModalClose) setOnModalClose(onModalClose);
         setModalContent(modalComponent);
-        console.log("Modal content set:", modalComponent);
-
-        if (typeof onItemClick === 'function') {
-            onItemClick();
-            console.log("Item click handler executed");
-        }
+        console.log("Modal content set:", modalComponent); // Log after setting the content
+        if (typeof onItemClick === 'function') onItemClick();
     };
 
     return (
@@ -28,6 +22,7 @@ export default OpenModalMenuItem;
 
 
 
+
 // import { useModal } from "../../context/Modal";
 // import React from "react";
 
@@ -35,10 +30,18 @@ export default OpenModalMenuItem;
 //     const { setModalContent, setOnModalClose } = useModal();
 
 //     const onClick = () => {
-//         console.log("Opening Modal:", modalComponent);
-//         if (onModalClose) setOnModalClose(onModalClose);
+//         console.log("Opening Modal with component:", modalComponent);
+//         if (onModalClose) {
+//             setOnModalClose(onModalClose);
+//             console.log("Setting onModalClose callback");
+//         }
 //         setModalContent(modalComponent);
-//         if (typeof onItemClick === 'function') onItemClick();
+//         console.log("Modal content set:", modalComponent);
+
+//         if (typeof onItemClick === 'function') {
+//             onItemClick();
+//             console.log("Item click handler executed");
+//         }
 //     };
 
 //     return (
@@ -47,4 +50,6 @@ export default OpenModalMenuItem;
 // };
 
 // export default OpenModalMenuItem;
+
+
 
