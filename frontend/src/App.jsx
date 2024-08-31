@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
-import * as sessionActions from './store/session'
+import * as sessionActions from './store/session';
 import SpotDetailsPage from "./components/SpotDetailsPage";
 import { ModalProvider } from './context/Modal'; // Ensure ModalProvider is imported
+import { Modal } from './context/Modal'; // Import the Modal component
 
 import ManageSpotsPage from "./components/ManageSpotsPage";
 import CreateSpotPage from "./components/SpotFormPage/CreateSpotPage";
@@ -18,12 +19,13 @@ const Layout = () => {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
-    })
+      setIsLoaded(true);
+    });
   }, [dispatch]);
 
   return (
     <>
+      <Modal /> {/* Ensure Modal is included here */}
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Outlet />}
     </>
@@ -59,16 +61,14 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  console.log("Rendering App with router"); // Log to ensure ModalProvider is wrapping the app
   return (
-    <ModalProvider> {/* Wrap the entire app with ModalProvider */}
+    <ModalProvider>
       <RouterProvider router={router} />
     </ModalProvider>
   );
 }
 
 export default App;
-
 
 // import React from "react";
 // import { useState, useEffect } from "react";
@@ -140,3 +140,5 @@ export default App;
 // }
 
 // export default App;
+
+
