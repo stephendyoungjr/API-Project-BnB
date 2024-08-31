@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useRef, createContext, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
@@ -56,10 +55,8 @@ export const Modal = () => {
 
 export const useModal = () => useContext(ModalContext);
 
-
-
 // import React from 'react';
-// import { useRef, createContext, useState, useContext, useEffect } from 'react';
+// import { useRef, createContext, useState, useContext } from 'react';
 // import ReactDOM from 'react-dom';
 // import './Modal.css';
 
@@ -69,13 +66,6 @@ export const useModal = () => useContext(ModalContext);
 //     const modalRef = useRef(null); // Initialize with null
 //     const [modalContent, setModalContent] = useState(null);
 //     const [onModalClose, setOnModalClose] = useState(null);
-
-//     // Use effect to ensure modalRef is not null
-//     useEffect(() => {
-//         if (!modalRef.current) {
-//             console.error('Modal ref is not attached to a DOM element.');
-//         }
-//     }, [modalRef.current]);
 
 //     const closeModal = () => {
 //         setModalContent(null);
@@ -101,7 +91,7 @@ export const useModal = () => useContext(ModalContext);
 //             <div id="modal-root" ref={modalRef} /> {/* Make sure this div is correctly rendered */}
 //         </>
 //     );
-// }
+// };
 
 // export const Modal = () => {
 //     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
@@ -118,7 +108,6 @@ export const useModal = () => useContext(ModalContext);
 //         </div>,
 //         modalRef.current
 //     );
-// }
+// };
 
 // export const useModal = () => useContext(ModalContext);
-
