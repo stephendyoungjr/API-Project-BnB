@@ -87,6 +87,8 @@ const ProfileButton = ({ user }) => {
 export default ProfileButton;
 
 
+
+
 // import { useEffect, useState, useRef } from "react";
 // import { useDispatch } from "react-redux";
 // import { FaCircleUser } from "react-icons/fa6";
@@ -98,8 +100,8 @@ export default ProfileButton;
 // import SignupFormModal from "../SignupFormModal";
 // import { useNavigate } from "react-router-dom";
 
-// const ProfileButton = ({user}) => {
-//     const dispatch =  useDispatch();
+// const ProfileButton = ({ user }) => {
+//     const dispatch = useDispatch();
 //     const navigate = useNavigate();
 //     const [showMenu, setShowMenu] = useState(false);
 //     const ulRef = useRef(); // Ref for the dropdown menu
@@ -171,6 +173,8 @@ export default ProfileButton;
 //             </ul>
 //         </div>
 //     );
-// }
+// };
 
 // export default ProfileButton;
+
+
