@@ -7,8 +7,7 @@ body {
   }
   
   form {
-      /* flex: 0 0 400px; */
-      /* width: 70%; */
+
       gap: .5em;
   }
   
@@ -27,7 +26,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f44336;
+    background-color: #254a67;
     color: white;
     border: solid 2px black;
     box-shadow: 2px 2px 0px black;

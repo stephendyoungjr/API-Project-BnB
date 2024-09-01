@@ -46,7 +46,7 @@ const ProfileButton = ({ user }) => {
     const logoutClick = (e) => {
         e.preventDefault();
         dispatch(logout());
-        closeMenuManually();
+        closeMenu()
         navigate('/');
         console.log("User logged out");
     };
@@ -59,7 +59,7 @@ const ProfileButton = ({ user }) => {
                 <IoMenu />
                 <FaCircleUser />
             </button>
-            <ul className={dropdownClasses} ref={ulRef}> {/* Attach the ref to the dropdown menu */}
+            <ul className={dropdownClasses} ref={ulRef}> 
                 {user ? (
                     <>
                         <li>Hello, {user.firstName}</li>
@@ -75,12 +75,12 @@ const ProfileButton = ({ user }) => {
                     <>
                         <OpenModalMenuItem
                             itemText="Sign Up"
-                            onItemClick={closeMenuManually} // Close menu after clicking
+                            onItemClick={closeMenu} // Close menu after clicking
                             modalComponent={<SignupFormModal />}
                         />
                         <OpenModalMenuItem
                             itemText="Log In"
-                            onItemClick={closeMenuManually} // Close menu after clicking
+                            onItemClick={closeMenu} // Close menu after clicking
                             modalComponent={<LoginFormModal />}
                         />
                     </>

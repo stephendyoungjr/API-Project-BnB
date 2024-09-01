@@ -38,7 +38,7 @@ export const ModalProvider = ({ children }) => {
             <ModalContext.Provider value={contextValue}>
                 {children}
             </ModalContext.Provider>
-            <div id="modal-root" ref={modalRef} /> {/* Ensure this is rendered */}
+            <div id="modal-root" ref={modalRef} /> 
         </>
     );
 };
@@ -48,7 +48,7 @@ export const Modal = () => {
     console.log('Modal content:', modalContent);
     console.log('Modal ref:', modalRef.current); // Log the modalRef
 
-    if (!modalRef.current || !modalContent) return null;
+    if (!modalRef || !modalRef.current || !modalContent) return null;
 
     return ReactDOM.createPortal(
         <div id='modal'>

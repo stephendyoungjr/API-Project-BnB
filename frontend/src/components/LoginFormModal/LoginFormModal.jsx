@@ -5,8 +5,7 @@ import { useModal } from '../../context/Modal.jsx';
 import './LoginForm.css';
 import React from 'react';
 
-// import { useNavigate } from 'react-router-dom';
-// import { Navigate } from 'react-router-dom';
+
 
 const LoginFormModal = () => {
     const dispatch = useDispatch();
@@ -37,7 +36,7 @@ const LoginFormModal = () => {
     }
 
     const demoUser = () => {
-        dispatch(login({credential: 'MageOfTevinter', password: 'magisterial123' }))
+        dispatch(login({credential: 'ElvenWarrior', password: 'stormblade456' }))
             .then(closeModal)
             // .then(<Navigate to='/' replace="true"/>)
             // .then(navigate('/'))

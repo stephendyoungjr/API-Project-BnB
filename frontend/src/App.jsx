@@ -7,8 +7,8 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import * as sessionActions from './store/session'
 import SpotDetailsPage from "./components/SpotDetailsPage";
-import { ModalProvider } from './context/Modal'; // Ensure ModalProvider is imported
-
+import { ModalProvider } from './context/Modal'; 
+// import { Modal }  from './context/Modal';
 import ManageSpotsPage from "./components/ManageSpotsPage";
 import CreateSpotPage from "./components/SpotFormPage/CreateSpotPage";
 import EditSpotPage from "./components/SpotFormPage/EditSpotPage";
@@ -60,11 +60,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  console.log("Rendering App with router"); // Log to ensure ModalProvider is wrapping the app
+  console.log("Rendering App with router"); 
   return (
-    <ModalProvider> {/* Wrap the entire app with ModalProvider */}
+    // <ModalProvider> 
       <RouterProvider router={router} />
-    </ModalProvider>
+    // </ModalProvider>
   );
 }
 
