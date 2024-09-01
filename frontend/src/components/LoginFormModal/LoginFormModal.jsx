@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/session.js';
 import { useModal } from '../../context/modal.jsx';
 import './LoginForm.css';
+import React from 'react';
 
 const LoginFormModal = () => {
     const dispatch = useDispatch();
