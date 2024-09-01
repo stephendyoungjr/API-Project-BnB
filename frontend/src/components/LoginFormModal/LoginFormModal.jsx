@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/session.js';
-import { useModal } from '../../context/modal.jsx';
+import { useModal } from '../../context/Modal.jsx';
 import './LoginForm.css';
 import React from 'react';
 
