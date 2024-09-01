@@ -60,7 +60,7 @@ const router = createBrowserRouter([
 function App() {
   console.log("Rendering App with router"); 
   return (
-    <ModalProvider> {/* Ensure the app is wrapped in ModalProvider */}
+    <ModalProvider> 
       <RouterProvider router={router} />
     </ModalProvider>
   );

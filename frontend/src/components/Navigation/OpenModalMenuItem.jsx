@@ -1,4 +1,3 @@
-
 import { useModal } from "../../context/Modal";
 import React from "react";
 
@@ -6,21 +5,24 @@ const OpenModalMenuItem = ({ modalComponent, itemText, onItemClick, onModalClose
     const { setModalContent, setOnModalClose } = useModal();
 
     const onClick = () => {
-        console.log("Opening Modal with component:", modalComponent); // Log which component is being set
-        if (onModalClose) setOnModalClose(onModalClose);
+        console.log('Clicked on:', itemText); 
+        if (onModalClose) {
+            setOnModalClose(onModalClose);
+            console.log('onModalClose function set'); 
+        }
         setModalContent(modalComponent);
-        console.log("Modal content set:", modalComponent); // Log after setting the content
-        if (typeof onItemClick === 'function') onItemClick();
+        console.log('Modal content set to:', modalComponent); 
+        if (typeof onItemClick === 'function') {
+            onItemClick();
+            console.log('onItemClick function executed'); 
+        }
     };
 
     return (
-        <li className={className} onClick={onClick}>{itemText}</li>
+        <li className={className} onClick={onClick}>
+            {itemText}
+        </li>
     );
 };
 
 export default OpenModalMenuItem;
-
-
-
-
-

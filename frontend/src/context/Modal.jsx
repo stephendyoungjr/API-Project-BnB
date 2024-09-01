@@ -39,7 +39,13 @@ export const ModalProvider = ({children}) => {
 export const Modal = () => {
     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
 
-    if (!modalRef || !modalRef.current || !modalContent) return null;
+    console.log('Rendering Modal with content:', modalContent); // Log the content to be rendered
+    console.log('Modal reference:', modalRef.current); // Log the modal reference
+
+    if (!modalRef || !modalRef.current || !modalContent) {
+        console.log('Modal not rendered. Conditions not met.'); // Log if modal does not render
+        return null;
+    }
 
     return ReactDOM.createPortal(
         <div id='modal'>
@@ -47,10 +53,15 @@ export const Modal = () => {
             <div id='modal-content'>{modalContent}</div>
         </div>,
         modalRef.current
-    )
-}
+    );
+};
 
-export const useModal = () => useContext(ModalContext);
+
+export const useModal = () => {
+    const context = useContext(ModalContext);
+    console.log('useModal context:', context); 
+    return context;
+};
 
 
 // import React from 'react';
