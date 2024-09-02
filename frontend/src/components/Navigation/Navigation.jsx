@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import './Navigation.css';
-import { GiPalmTree } from "react-icons/gi";
+
 
 const Navigation = ({isLoaded}) => {
     const sessionUser = useSelector(state => state.session.user)
@@ -18,7 +18,7 @@ const Navigation = ({isLoaded}) => {
         <ul>
             <li id="home-nav">
                 <NavLink to="/">
-                    <div id="site-icon"><GiPalmTree /></div>
+                <link rel="icon" type="image" href="./iconimage/warbnblogo.jpeg" />
                     Warbnb
                 </NavLink>
             </li>
