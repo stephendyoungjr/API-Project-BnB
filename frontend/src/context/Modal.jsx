@@ -1,40 +1,48 @@
-import { useRef, createContext, useState, useContext } from 'react';
+import { useRef, createContext, useState, useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import './Modal.css'
+import './Modal.css';
 import React from 'react';
 
 const ModalContext = createContext();
 
-export const ModalProvider = ({children}) => {
-    const modalRef = useRef()
+export const ModalProvider = ({ children }) => {
+    const modalRef = useRef(null);
     const [modalContent, setModalContent] = useState(null);
-    const [onModalClose, setOnModalClose] = useState(null)
+    const [onModalClose, setOnModalClose] = useState(null);
 
     const closeModal = () => {
         setModalContent(null);
         if (typeof onModalClose === 'function') {
             setOnModalClose(null);
-            onModalClose()
+            onModalClose();
         }
-    }
+    };
+
+    useEffect(() => {
+        if (modalRef.current) {
+            console.log('modalRef is attached to the DOM:', modalRef.current);
+        } else {
+            console.error('modalRef is not attached to the DOM.');
+        }
+    }, [modalRef.current]);
 
     const contextValue = {
         modalRef,
         modalContent,
         setModalContent,
         setOnModalClose,
-        closeModal
-    }
+        closeModal,
+    };
 
     return (
         <>
             <ModalContext.Provider value={contextValue}>
                 {children}
             </ModalContext.Provider>
-            <div ref={modalRef} />
+            <div ref={modalRef} id="modal-container" />
         </>
-    )
-}
+    );
+};
 
 export const Modal = () => {
     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
@@ -42,8 +50,8 @@ export const Modal = () => {
     console.log('Rendering Modal with content:', modalContent); // Log the content to be rendered
     console.log('Modal reference:', modalRef.current); // Log the modal reference
 
-    if (!modalRef || !modalRef.current || !modalContent) {
-        console.log('Modal not rendered. Conditions not met.'); // Log if modal does not render
+    if (!modalRef.current || !modalContent) {
+        console.log('Modal not rendered. Conditions not met.');
         return null;
     }
 
@@ -56,40 +64,32 @@ export const Modal = () => {
     );
 };
 
-
 export const useModal = () => {
     const context = useContext(ModalContext);
-    console.log('useModal context:', context); 
+    console.log('useModal context:', context);
     return context;
 };
 
 
-// import React from 'react';
-// import { useRef, createContext, useState, useContext, useEffect } from 'react';
+// import { useRef, createContext, useState, useContext } from 'react';
 // import ReactDOM from 'react-dom';
-// import './Modal.css';
+// import './Modal.css'
+// import React from 'react';
 
 // const ModalContext = createContext();
 
-// export const ModalProvider = ({ children }) => {
-//     const modalRef = useRef(null); // Initialize with null
+// export const ModalProvider = ({children}) => {
+//     const modalRef = useRef()
 //     const [modalContent, setModalContent] = useState(null);
-//     const [onModalClose, setOnModalClose] = useState(null);
-
-//     // Check if the modal-root is properly rendered
-//     useEffect(() => {
-//         if (!modalRef.current) {
-//             console.error("modal-root not found in the DOM.");
-//         }
-//     }, []);
+//     const [onModalClose, setOnModalClose] = useState(null)
 
 //     const closeModal = () => {
 //         setModalContent(null);
 //         if (typeof onModalClose === 'function') {
 //             setOnModalClose(null);
-//             onModalClose();
+//             onModalClose()
 //         }
-//     };
+//     }
 
 //     const contextValue = {
 //         modalRef,
@@ -97,24 +97,28 @@ export const useModal = () => {
 //         setModalContent,
 //         setOnModalClose,
 //         closeModal
-//     };
+//     }
 
 //     return (
 //         <>
 //             <ModalContext.Provider value={contextValue}>
 //                 {children}
 //             </ModalContext.Provider>
-//             <div id="modal-root" ref={modalRef} /> 
+//             <div ref={modalRef} />
 //         </>
-//     );
-// };
+//     )
+// }
 
 // export const Modal = () => {
 //     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
-//     console.log('Modal content:', modalContent);
-//     console.log('Modal ref:', modalRef.current); // Log the modalRef
 
-//     if (!modalRef || !modalRef.current || !modalContent) return null;
+//     console.log('Rendering Modal with content:', modalContent); // Log the content to be rendered
+//     console.log('Modal reference:', modalRef.current); // Log the modal reference
+
+//     if (!modalRef || !modalRef.current || !modalContent) {
+//         console.log('Modal not rendered. Conditions not met.'); // Log if modal does not render
+//         return null;
+//     }
 
 //     return ReactDOM.createPortal(
 //         <div id='modal'>
@@ -125,5 +129,9 @@ export const useModal = () => {
 //     );
 // };
 
-// export const useModal = () => useContext(ModalContext);
 
+// export const useModal = () => {
+//     const context = useContext(ModalContext);
+//     console.log('useModal context:', context); 
+//     return context;
+// };
