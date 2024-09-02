@@ -6,7 +6,6 @@ import { IoMdStar } from "react-icons/io";
 import './ManageSpots.css'
 import DeleteSpotModal from "../DeleteSpotModal/DeleteSpotModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import React from 'react';
 
 const ManageSpotsPage = () => {
     const navigate = useNavigate()

@@ -1,11 +1,11 @@
-import { useModal } from '../../context/Modal.jsx';
+import { useModal } from '../../context/modal.jsx';
 import { useEffect, useState } from 'react';
 import { TiStarOutline } from "react-icons/ti";
 import { TiStarFullOutline } from "react-icons/ti";
 import './ReviewForm.css'
 import { useDispatch } from 'react-redux';
 import { createReview } from '../../store/spot.js';
-import React from 'react';
+
 
 const ReviewFormModal= ({spotId}) => {
     const dispatch = useDispatch()

@@ -1,33 +1,33 @@
-import React from "react";
+
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
-import * as sessionActions from './store/session';
+import * as sessionActions from './store/session'
 import SpotDetailsPage from "./components/SpotDetailsPage";
-import { ModalProvider } from './context/Modal'; 
+
 import ManageSpotsPage from "./components/ManageSpotsPage";
 import CreateSpotPage from "./components/SpotFormPage/CreateSpotPage";
 import EditSpotPage from "./components/SpotFormPage/EditSpotPage";
 
+
 const Layout = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true);
-    });
-  }, [dispatch]);
+      setIsLoaded(true)})
+  }, [dispatch])
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Outlet />}
+      {isLoaded && <Outlet /> }
     </>
   );
-};
+}
 
 const router = createBrowserRouter([
   {
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'spots/:spotId/edit',
-        element: <EditSpotPage />,
+        element: <EditSpotPage />
       },
       {
         path: 'spots/:spotId',
@@ -47,23 +47,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'spots/new',
-        element: <CreateSpotPage />,
+        element: <CreateSpotPage/>
       },
       {
         path: 'spots/current',
-        element: <ManageSpotsPage />,
+        element: <ManageSpotsPage />
       }
-    ],
-  },
+    ]
+  }
 ]);
 
 function App() {
-  console.log("Rendering App with router"); 
-  return (
-    <ModalProvider> 
-      <RouterProvider router={router} />
-    </ModalProvider>
-  );
+  return <RouterProvider router={router}/>;
 }
 
 export default App;
@@ -74,7 +69,7 @@ export default App;
 // import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 // import Navigation from "./components/Navigation";
 // import LandingPage from "./components/LandingPage";
-// import * as sessionActions from './store/session'
+// import * as sessionActions from './store/session';
 // import SpotDetailsPage from "./components/SpotDetailsPage";
 // import { ModalProvider } from './context/Modal'; 
 // import ManageSpotsPage from "./components/ManageSpotsPage";
@@ -87,8 +82,8 @@ export default App;
 
 //   useEffect(() => {
 //     dispatch(sessionActions.restoreUser()).then(() => {
-//       setIsLoaded(true)
-//     })
+//       setIsLoaded(true);
+//     });
 //   }, [dispatch]);
 
 //   return (
@@ -97,7 +92,7 @@ export default App;
 //       {isLoaded && <Outlet />}
 //     </>
 //   );
-// }
+// };
 
 // const router = createBrowserRouter([
 //   {
@@ -109,7 +104,7 @@ export default App;
 //       },
 //       {
 //         path: 'spots/:spotId/edit',
-//         element: <EditSpotPage />
+//         element: <EditSpotPage />,
 //       },
 //       {
 //         path: 'spots/:spotId',
@@ -117,25 +112,24 @@ export default App;
 //       },
 //       {
 //         path: 'spots/new',
-//         element: <CreateSpotPage/>
+//         element: <CreateSpotPage />,
 //       },
 //       {
 //         path: 'spots/current',
-//         element: <ManageSpotsPage />
+//         element: <ManageSpotsPage />,
 //       }
-//     ]
-//   }
+//     ],
+//   },
 // ]);
 
 // function App() {
 //   console.log("Rendering App with router"); 
 //   return (
-//     // <ModalProvider> 
+//     <ModalProvider> 
 //       <RouterProvider router={router} />
-//     // </ModalProvider>
+//     </ModalProvider>
 //   );
 // }
 
 // export default App;
-
 

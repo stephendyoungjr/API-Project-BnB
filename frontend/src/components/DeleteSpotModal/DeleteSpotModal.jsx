@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deleteSpot } from '../../store/spot';
-import { useModal } from '../../context/Modal';
-import React from 'react';
+import { useModal } from '../../context/modal';
+
 
 import './DeleteSpot.css'
 

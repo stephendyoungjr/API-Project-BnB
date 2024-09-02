@@ -1,10 +1,9 @@
-
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/session.js';
-import { useModal } from '../../context/Modal.jsx';
+import { useModal } from '../../context/modal.jsx';
 import './LoginForm.css';
-import React from 'react';
+
 
 const LoginFormModal = () => {
     const dispatch = useDispatch();
@@ -34,8 +33,10 @@ const LoginFormModal = () => {
             });
     }
 
+
+
     const demoUser = () => {
-        dispatch(login({credential: 'MageOfTevinter', password: 'magisterial123' }))
+        dispatch(login({credential: 'DragonSorcerer', password: 'dragonfire456' }))
             .then(closeModal)
             // .then(<Navigate to='/' replace="true"/>)
             // .then(navigate('/'))
@@ -87,14 +88,15 @@ const LoginFormModal = () => {
 
 export default LoginFormModal;
 
+
+
+
 // import { useEffect, useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { login } from '../../store/session.js';
 // import { useModal } from '../../context/Modal.jsx';
 // import './LoginForm.css';
 // import React from 'react';
-
-
 
 // const LoginFormModal = () => {
 //     const dispatch = useDispatch();
@@ -125,7 +127,7 @@ export default LoginFormModal;
 //     }
 
 //     const demoUser = () => {
-//         dispatch(login({credential: 'ElvenWarrior', password: 'stormblade456' }))
+//         dispatch(login({credential: 'MageOfTevinter', password: 'magisterial123' }))
 //             .then(closeModal)
 //             // .then(<Navigate to='/' replace="true"/>)
 //             // .then(navigate('/'))
@@ -176,3 +178,4 @@ export default LoginFormModal;
 // }
 
 // export default LoginFormModal;
+

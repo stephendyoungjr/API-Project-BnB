@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useModal } from '../../context/Modal.jsx'
+import { useModal } from '../../context/modal.jsx'
 import { signup } from '../../store/session.js';
 import './SignupForm.css';
-import React from 'react';
 
 const SignupFormModal = () => {
     const dispatch = useDispatch();
@@ -133,18 +132,14 @@ const SignupFormModal = () => {
 
 export default SignupFormModal;
 
-
-
-// import React from "react";
 // import { useState, useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useModal } from '../../context/Modal.jsx'
 // import { signup } from '../../store/session.js';
 // import './SignupForm.css';
+// import React from 'react';
 
 // const SignupFormModal = () => {
-//     console.log('SignupFormModal rendered');
-
 //     const dispatch = useDispatch();
 //     const { closeModal } = useModal()
 
@@ -271,3 +266,5 @@ export default SignupFormModal;
 // }
 
 // export default SignupFormModal;
+
+

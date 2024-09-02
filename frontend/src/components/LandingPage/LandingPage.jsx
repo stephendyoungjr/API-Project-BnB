@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { loadAllSpots } from '../../store/spot';
 import { IoMdStar } from "react-icons/io";
 import './LandingPage.css'
-import React from 'react';
+
 
 
 const LandingPage = () => {

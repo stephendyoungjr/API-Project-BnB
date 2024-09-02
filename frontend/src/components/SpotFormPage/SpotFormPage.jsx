@@ -4,7 +4,7 @@ import { addSpotImage, createSpot, editSpot } from "../../store/spot";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadSpot} from "../../store/spot";
 import './SpotForm.css'
-import React from 'react';
+
 
 
 const SpotFormPage = ({formType}) => {

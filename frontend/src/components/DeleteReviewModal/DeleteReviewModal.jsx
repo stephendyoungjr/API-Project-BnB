@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deleteReview } from '../../store/spot';
-import { useModal } from '../../context/Modal';
+import { useModal } from '../../context/modal';
 
-import React from 'react';
 const DeleteReviewModal = ({reviewId, spotId}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
