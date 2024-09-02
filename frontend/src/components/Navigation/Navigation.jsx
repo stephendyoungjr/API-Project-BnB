@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import './Navigation.css';
+import warbnbLogo from '../../../public/warbnblogo.jpeg'
 
 
 const Navigation = ({isLoaded}) => {
@@ -18,6 +19,7 @@ const Navigation = ({isLoaded}) => {
         <ul>
             <li id="home-nav">
                 <NavLink to="/">
+                <img src={warbnbLogo} alt="Warbnb Logo" style={{ width: '50px', height: '50px' }} />
                     Warbnb
                 </NavLink>
             </li>
