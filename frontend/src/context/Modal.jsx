@@ -58,7 +58,9 @@ export const Modal = () => {
     return ReactDOM.createPortal(
         <div id='modal'>
             <div id='modal-background' onClick={closeModal} />
-            <div id='modal-content'>{modalContent}</div>
+            <div id='modal-content' key={modalContent?.type?.name || 'default'}>
+                {modalContent}
+            </div>
         </div>,
         modalRef.current
     );
@@ -69,6 +71,7 @@ export const useModal = () => {
     console.log('useModal context:', context);
     return context;
 };
+
 
 
 // import { useRef, createContext, useState, useContext } from 'react';

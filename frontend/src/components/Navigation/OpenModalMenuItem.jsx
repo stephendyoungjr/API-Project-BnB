@@ -1,5 +1,3 @@
-
-
 import { useModal } from "../../context/Modal";
 import React from "react";
 
@@ -9,7 +7,7 @@ const OpenModalMenuItem = ({ modalComponent, itemText }) => {
     const onClick = () => {
         console.log('Clicked on:', itemText); 
         setModalContent(modalComponent);
-        console.log('Modal content set to:', modalComponent); 
+        console.log('Modal content set to:', modalComponent);  // Log to ensure the content is being set correctly
     };
 
     return (
