@@ -106,17 +106,17 @@ const CreateSpotPage = () => {
 
     const demoSpot = () => {
         setSpotDetails({
-            "address": "5 Winter Palace",
-            "city": "Val Royeaux",
-            "state": "Orlais",
-            "country": "Thedas",
-            "lat": 45.5088,
-            "lng": -73.554,
-            "name": "Orlesian Splendor",
-            "description": "Exquisite palace apartment with views of the Fountain Courtyard in Val Royeaux",
-            "price": 500
+            "address": "7 Dragon's Keep",
+            "city": "Skyhold",
+            "state": "Frostback Mountains",
+            "country": "Ferelden",
+            "lat": 63.2379,
+            "lng": -45.123,
+            "name": "High Enchanter's Refuge",
+            "description": "A majestic tower nestled high in the Frostback Mountains, offering panoramic views of ancient ruins and shimmering ice fields.",
+            "price": 750
         })
-        setImageUrls({...imageUrls, previewImageUrl : 'https://i.quotev.com/o7dxwda3ssma.jpg'})
+        setImageUrls({...imageUrls, previewImageUrl : 'https://i.imgur.com/wxJEYPq.png'})
     }
 
     return (
